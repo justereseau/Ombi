@@ -6,7 +6,7 @@ env:
 on:
   workflow_dispatch:
   schedule:
-    - cron: '45 6 * * *'
+    - cron: "45 6 * * *"
   push:
     branches:
       - main
@@ -28,9 +28,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Read latest Ombi release
+      - name: Read latest Ombi pre-release
         id: get_latest_release
-        run: echo "release_tag=$(curl https://api.github.com/repos/Ombi-app/Ombi/releases/latest --silent | jq -r '.tag_name' | sed 's/v//g')" >> "$GITHUB_OUTPUT"
+        run: echo "release_tag=$(curl https://api.github.com/repos/Ombi-app/Ombi/releases --silent | jq -r '[.[] | select(.draft == false and .prerelease == true)] | sort_by(.created_at) | reverse | .[0] | .tag_name | sub("v"; "")')" >> "$GITHUB_OUTPUT"
         shell: bash
 
       - name: Build and push
