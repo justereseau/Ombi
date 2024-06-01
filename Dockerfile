@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 # Read the release version from the build args
 ARG RELEASE_TAG
