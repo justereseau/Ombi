@@ -32,7 +32,7 @@ jobs:
 
       - name: Read latest release
         id: get_latest_release
-        run: echo "release_tag=$(curl https://api.github.com/repos/Ombi-app/Ombi/releases --silent | jq -r '[.[] | select(.draft == false and .prerelease == true)] | sort_by(.created_at) | reverse | .[0] | .tag_name | sub("v"; "")')" >> "$GITHUB_OUTPUT"
+        run: echo "release_tag=$(curl https://api.github.com/repos/Ombi-app/Ombi/releases/latest --silent | jq -r '.tag_name' | sed 's/v//g')" >> "$GITHUB_OUTPUT"
         shell: bash
 
       - name: Set up Docker Buildx
