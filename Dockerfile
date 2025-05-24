@@ -50,7 +50,7 @@ RUN adduser --system --uid 1000 --group --disabled-password servarr \
 USER servarr
 
 # Expose the port
-EXPOSE 8989
+EXPOSE 3579
 
 WORKDIR /opt/ombi
 
