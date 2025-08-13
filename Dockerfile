@@ -24,7 +24,7 @@ RUN case $(uname -m) in \
 RUN wget -O /tmp/binary.tar.gz $(cat /tmp/download_url) && \
   tar -xvzf /tmp/binary.tar.gz -C /build --strip-components=1
 
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # Read the release version from the build args
 ARG RELEASE_TAG
